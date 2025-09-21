@@ -1,28 +1,22 @@
-import { Link } from "@heroui/link";
-
+import { useLocation } from "react-router-dom";
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 
 export default function DefaultLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const location = useLocation();
+  const isPrivacyPage = location.pathname === "/privacy";
+
   return (
-    <div className="relative flex flex-col h-screen">
+    <div className="relative flex flex-col min-h-screen">
       <Navbar />
-      <main className="container mx-auto max-w-7xl px-6 flex-grow pt-16">
+      <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
         {children}
       </main>
-      <footer className="w-full flex items-center justify-center py-3">
-        <Link
-          isExternal
-          className="flex items-center gap-1 text-current"
-          href="https://heroui.com"
-          title="heroui.com homepage"
-        >
-          <p className="text-primary">Aviso de Privacidad</p>
-        </Link>
-      </footer>
+      {!isPrivacyPage && <Footer />}
     </div>
   );
 }

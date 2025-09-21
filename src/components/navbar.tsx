@@ -1,7 +1,7 @@
 import { Button } from "@heroui/button";
 import { Kbd } from "@heroui/kbd";
-import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
+import { Link } from "react-router-dom";
 import {
   Navbar as HeroUINavbar,
   NavbarBrand,
@@ -24,24 +24,19 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand className="gap-3 max-w-fit">
           <Link
-            className="flex justify-start items-center gap-1"
-            color="foreground"
-            href="/"
+            className="flex justify-start items-center gap-1 text-foreground no-underline"
+            to="/"
           >
             <Logo />
-            <p className="font-bold text-inherit">Paguina CL</p>
+            <p className="font-bold text-inherit">Pagina CL</p>
           </Link>
         </NavbarBrand>
         <div className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <Link
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={item.href}
+                className="text-foreground hover:text-primary transition-colors no-underline font-medium"
+                to={item.href}
               >
                 {item.label}
               </Link>
@@ -66,18 +61,17 @@ export const Navbar = () => {
 
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
+          {siteConfig.navItems.map((item, index) => (
+            <NavbarMenuItem key={`${item.label}-${index}`}>
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href="#"
-                size="lg"
+                className={`text-lg no-underline transition-colors ${
+                  index === 0
+                    ? "text-primary"
+                    : index === siteConfig.navItems.length - 1
+                      ? "text-danger"
+                      : "text-foreground"
+                } hover:text-primary`}
+                to={item.href}
               >
                 {item.label}
               </Link>

@@ -1,3 +1,65 @@
 @import "tailwindcss";
 
-@config "../../tailwind.config.js"
+@config "../../tailwind.config.js";
+
+/* Estilos personalizados para scroll suave en las cards */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Animaciones suaves para las transiciones */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Estilo para cards expandidas */
+.card-expanded {
+  transform: scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Hover effects mejorados */
+.hover\:scale-\[1\.02\]:hover {
+  transform: scale(1.02);
+}
+
+/* Gradientes personalizados */
+.bg-gradient-custom-blue {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+}
+
+.bg-gradient-custom-green {
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+}
+
+.bg-gradient-custom-purple {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+}
+
+.bg-gradient-custom-orange {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.bg-gradient-custom-teal {
+  background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
+}
+
+.bg-gradient-custom-red {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}

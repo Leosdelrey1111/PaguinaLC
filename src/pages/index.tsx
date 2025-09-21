@@ -27,7 +27,7 @@ export default function IndexPage() {
 
         <div className="flex gap-3 flex-wrap justify-center">
           <Link
-            to="/ethics"
+            to="/about"
             className={buttonStyles({
               color: "primary",
               radius: "full",

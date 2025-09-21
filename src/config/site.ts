@@ -1,59 +1,25 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Vite + HeroUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Normateca Digital",
+  description: "Sistema Integral de Normativas - Plataforma especializada en normativas legales y estándares técnicos de información en México.",
   navItems: [
     {
       label: "Aspectos Éticos y Legales",
-      href: "/",
+      href: "/about",
     },
     {
-      label: "Marco Normativo Nacional",
-      href: "/docs",
+      label: "Leyes Mexicanas", 
+      href: "/laws",
+    },
+    {
+      label: "Estándares Internacionales",
+      href: "/standards",
     },
     {
       label: "Aviso de Privacidad",
-      href: "/pricing",
-    },
-    {
-      label: "Recursos Adicionales",
-      href: "/blog",
-    },
-  ],
-  navMenuItems: [
-    {
-      label: "Profile",
-      href: "/profile",
-    },
-    {
-      label: "Dashboard",
-      href: "/dashboard",
-    },
-    {
-      label: "Projects",
-      href: "/projects",
-    },
-    {
-      label: "Team",
-      href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
-    },
+      href: "/privacy",
+    }
   ],
   links: {
     github: "https://github.com/frontio-ai/heroui",
