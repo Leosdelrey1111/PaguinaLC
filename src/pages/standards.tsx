@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Card, CardBody } from "@heroui/card";
+import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Button } from "@heroui/button";
+import { Chip } from "@heroui/chip";
+import { Divider } from "@heroui/divider";
 import { title } from "@/components/primitives";
 import { 
   CogIcon, 
@@ -9,7 +11,12 @@ import {
   ShieldIcon, 
   FileTextIcon, 
   SettingsIcon,
-  TrendingUpIcon 
+  BookOpenIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  AwardIcon,
+  GlobeIcon,
+  TrendingUpIcon
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { button as buttonStyles } from "@heroui/theme";
@@ -23,6 +30,9 @@ interface StandardCard {
   color: string;
   content: string;
   pdfName: string;
+  keyFeatures: string[];
+  category: string;
+  year: string;
 }
 
 export default function StandardsPage() {
@@ -33,46 +43,86 @@ export default function StandardsPage() {
       id: "iso27001",
       title: "ISO 27001",
       subtitle: "Sistema de Gestión de Seguridad de la Información",
-      icon: <ShieldIcon size={32} className="text-white" />,
-      color: "bg-blue-500",
-      content: "ISO 27001 es el estándar internacional para sistemas de gestión de seguridad de la información (SGSI). Proporciona un marco sistemático para gestionar información sensible y mantenerla segura. Este estándar utiliza un enfoque basado en riesgos y está diseñado para ayudar a las organizaciones a establecer, implementar, mantener y mejorar continuamente un SGSI. Incluye controles de seguridad que abarcan aspectos físicos, técnicos y organizacionales. La certificación ISO 27001 demuestra el compromiso de una organización con la seguridad de la información y es ampliamente reconocida por clientes, reguladores y socios comerciales a nivel mundial.",
-      pdfName: "iso-27001-guia-completa.pdf"
+      icon: <ShieldIcon size={28} className="text-white" />,
+      color: "bg-gradient-to-br from-blue-500 to-blue-600",
+      category: "Seguridad",
+      year: "2022",
+      content: "ISO 27001 es el estándar internacional para sistemas de gestión de seguridad de la información (SGSI). Proporciona un marco sistemático para gestionar información sensible y mantenerla segura mediante un enfoque basado en riesgos. Está diseñado para ayudar a las organizaciones a establecer, implementar, mantener y mejorar continuamente un SGSI con controles que abarcan aspectos físicos, técnicos y organizacionales.",
+      keyFeatures: [
+        "Enfoque basado en riesgos",
+        "Certificación internacional reconocida",
+        "Marco de mejora continua",
+        "Controles de seguridad integrales"
+      ],
+      pdfName: "ISO2700.pdf"
     },
     {
       id: "iso17799",
-      title: "ISO 17799",
-      subtitle: "Código de Práctica para la Gestión de Seguridad de la Información",
-      icon: <FileTextIcon size={32} className="text-white" />,
-      color: "bg-green-500",
-      content: "ISO 17799 (ahora ISO 27002) es un código de práctica que proporciona directrices detalladas para la implementación de controles de seguridad de la información. Ofrece un conjunto comprensivo de controles de seguridad organizados en categorías como política de seguridad, organización de la seguridad, gestión de activos, control de acceso, criptografía, seguridad física y del entorno, y gestión de incidentes. Este estándar complementa a ISO 27001 proporcionando implementaciones específicas y mejores prácticas para cada control de seguridad.",
-      pdfName: "iso-17799-27002-controles-seguridad.pdf"
+      title: "ISO 17799/27002", 
+      subtitle: "Código de Práctica para la Gestión de Seguridad",
+      icon: <FileTextIcon size={28} className="text-white" />,
+      color: "bg-gradient-to-br from-green-500 to-green-600",
+      category: "Controles",
+      year: "2022",
+      content: "ISO 17799 (ahora ISO 27002) es un código de práctica que proporciona directrices detalladas para la implementación de controles de seguridad de la información. Ofrece un conjunto comprensivo de controles organizados en categorías como política de seguridad, gestión de activos, control de acceso y criptografía, complementando perfectamente a ISO 27001.",
+      keyFeatures: [
+        "Controles de seguridad específicos",
+        "Mejores prácticas probadas",
+        "Complementa a ISO 27001",
+        "Guías de implementación detalladas"
+      ],
+      pdfName: "ISO17799.pdf"
     },
     {
       id: "cobit",
-      title: "COBIT",
-      subtitle: "Objetivos de control para la información y tecnologías relacionadas",
-      icon: <CogIcon size={32} className="text-white" />,
-      color: "bg-purple-500",
-      content: "COBIT es un marco de gobierno y gestión de TI que ayuda a las organizaciones a crear valor óptimo desde TI manteniendo un equilibrio entre la realización de beneficios y la optimización de los niveles de riesgo y el uso de recursos. Proporciona un conjunto integral de herramientas que ayudan a los ejecutivos a cumplir con sus responsabilidades de gobierno y gestión de TI empresarial. COBIT 5 integra los principales estándares y frameworks de TI en un solo marco coherente. Es especialmente útil para organizaciones que buscan alinear TI con objetivos de negocio y establecer un gobierno efectivo de la información.",
-      pdfName: "cobit-2019-marco-gobierno-ti.pdf"
+      title: "COBIT 2019",
+      subtitle: "Objetivos de Control para TI y Tecnologías Relacionadas",
+      icon: <CogIcon size={28} className="text-white" />,
+      color: "bg-gradient-to-br from-purple-500 to-purple-600",
+      category: "Gobierno TI",
+      year: "2019",
+      content: "COBIT es un marco de gobierno y gestión de TI que ayuda a las organizaciones a crear valor óptimo desde TI manteniendo un equilibrio entre beneficios y riesgos. Proporciona herramientas para ejecutivos que buscan cumplir con sus responsabilidades de gobierno empresarial de TI, integrando los principales estándares y frameworks en un solo marco coherente.",
+      keyFeatures: [
+        "Alineación de TI con negocio",
+        "Gestión de riesgos integrada",
+        "Marco de gobierno empresarial",
+        "Métricas y KPIs definidos"
+      ],
+      pdfName: "CobiT4_Espanol.pdf"
     },
     {
       id: "nist",
-      title: "NIST",
+      title: "NIST Framework",
       subtitle: "Marco de Ciberseguridad",
-      icon: <ShieldIcon size={32} className="text-white" />,
-      color: "bg-orange-500",
-      content: "El Marco de Ciberseguridad del NIST (National Institute of Standards and Technology) proporciona un enfoque flexible y repetible para gestionar y reducir el riesgo de ciberseguridad. Está organizado en cinco funciones principales: Identificar, Proteger, Detectar, Responder y Recuperar. Cada función se divide en categorías y subcategorías que proporcionan guidance específica para la gestión de riesgos de ciberseguridad. El framework es ampliamente adoptado tanto en el sector público como privado en Estados Unidos y a nivel internacional como base para programas de ciberseguridad.",
-      pdfName: "nist-cybersecurity-framework.pdf"
+      icon: <ShieldIcon size={28} className="text-white" />,
+      color: "bg-gradient-to-br from-orange-500 to-orange-600",
+      category: "Ciberseguridad",
+      year: "2024",
+      content: "El Marco de Ciberseguridad del NIST proporciona un enfoque flexible y repetible para gestionar y reducir el riesgo de ciberseguridad. Organizado en cinco funciones principales: Identificar, Proteger, Detectar, Responder y Recuperar, cada una con categorías específicas para la gestión de riesgos. Es ampliamente adoptado tanto en el sector público como privado.",
+      keyFeatures: [
+        "5 funciones principales",
+        "Enfoque basado en riesgos",
+        "Ampliamente adoptado",
+        "Framework flexible y escalable"
+      ],
+      pdfName: "NIST.CSWP.29.spa.pdf"
     },
     {
       id: "itil",
-      title: "ITIL",
-      subtitle: "Biblioteca de Infraestructura de Tecnologías de la Información",
-      icon: <SettingsIcon size={32} className="text-white" />,
-      color: "bg-teal-500",
-      content: "ITIL es un conjunto de mejores prácticas para la gestión de servicios de TI (ITSM) que se centra en la alineación de los servicios de TI con las necesidades del negocio. Proporciona un marco sistemático para la gestión de servicios que incluye procesos para el diseño, transición, operación y mejora continua de servicios de TI. ITIL ayuda a las organizaciones a mejorar la eficiencia, reducir costos y aumentar la satisfacción del cliente. La última versión, ITIL 4, incorpora prácticas modernas como DevOps, Agile y Lean, adaptándose a las necesidades de la transformación digital.",
-      pdfName: "itil-4-gestion-servicios-ti.pdf"
+      title: "ITIL 4",
+      subtitle: "Biblioteca de Infraestructura de TI",
+      icon: <SettingsIcon size={28} className="text-white" />,
+      color: "bg-gradient-to-br from-teal-500 to-teal-600",
+      category: "Servicios TI",
+      year: "2019",
+      content: "ITIL es un conjunto de mejores prácticas para la gestión de servicios de TI que se centra en la alineación de los servicios con las necesidades del negocio. ITIL 4 incorpora prácticas modernas como DevOps, Agile y Lean, adaptándose a las necesidades de la transformación digital con procesos para el diseño, transición, operación y mejora continua.",
+      keyFeatures: [
+        "Gestión de servicios moderna",
+        "Integración DevOps/Agile",
+        "Mejora continua de servicios",
+        "Enfoque en valor de negocio"
+      ],
+      pdfName: "manual ITIL.pdf"
     }
   ];
 
@@ -87,89 +137,191 @@ export default function StandardsPage() {
 
   return (
     <DefaultLayout>
-      <section className="flex flex-col gap-6 py-8 md:py-10 max-w-7xl mx-auto px-4">
-        {/* Botón de volver */}
-        <div className="flex items-center gap-4">
+      <section className="flex flex-col gap-8 py-8 md:py-12 max-w-7xl mx-auto px-4">
+        {/* Header con navegación */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <Link
             to="/"
             className={buttonStyles({
               variant: "light",
               radius: "full",
+              size: "sm"
             })}
           >
-            <ArrowLeftIcon size={18} />
+            <ArrowLeftIcon size={16} />
             Volver al Inicio
           </Link>
+          <Chip 
+            variant="flat" 
+            color="secondary"
+            startContent={<GlobeIcon size={14} />}
+            size="sm"
+          >
+            Estándares Globales
+          </Chip>
         </div>
 
-        {/* Título */}
-        <div className="text-center">
-          <h1 className={title()}>Estándares Internacionales</h1>
-        </div>
-
-        {/* Texto de introducción */}
-        <div className="bg-content2 p-6 rounded-lg border border-divider">
-          <p className="text-foreground text-lg leading-relaxed text-center">
-            Los estándares internacionales proporcionan frameworks y mejores prácticas reconocidas globalmente para la gestión 
-            de la información y la ciberseguridad. Esta sección presenta los principales estándares que las organizaciones adoptan 
-            para establecer controles efectivos, gestionar riesgos y asegurar la calidad en el manejo de información.
+        {/* Título principal */}
+        <div className="text-center space-y-3">
+          <h1 className={`${title()} text-4xl md:text-5xl bg-gradient-to-r from-secondary to-purple-600 bg-clip-text text-transparent`}>
+            Estándares Internacionales
+          </h1>
+          <p className="text-default-500 text-lg max-w-3xl mx-auto">
+            Frameworks y mejores prácticas reconocidas globalmente para la gestión de información y ciberseguridad
           </p>
         </div>
 
-        {/* Grid de cards */}
+        {/* Estadísticas */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-secondary">{standards.length}</div>
+            <div className="text-sm text-default-500">Estándares</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-primary">5</div>
+            <div className="text-sm text-default-500">Categorías</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-success">Global</div>
+            <div className="text-sm text-default-500">Alcance</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-warning">2024</div>
+            <div className="text-sm text-default-500">Actualizado</div>
+          </div>
+        </div>
+
+        {/* Introducción */}
+        <Card className="max-w-5xl mx-auto bg-gradient-to-br from-default-50 via-content1 to-secondary-50 border-1 border-default-200">
+          <CardBody className="p-8">
+            <div className="flex items-start gap-6">
+              <div className="bg-secondary/10 p-4 rounded-xl flex-shrink-0">
+                <AwardIcon size={32} className="text-secondary" />
+              </div>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-semibold text-default-900">
+                  Marcos de Referencia Internacional
+                </h2>
+                <p className="text-default-600 leading-relaxed text-lg">
+                  Los estándares internacionales proporcionan frameworks y mejores prácticas reconocidas 
+                  globalmente para la gestión de la información y la ciberseguridad. Esta sección presenta 
+                  los principales estándares que las organizaciones adoptan para establecer controles 
+                  efectivos, gestionar riesgos y asegurar la calidad en el manejo de información.
+                </p>
+              </div>
+            </div>
+          </CardBody>
+        </Card>
+
+        {/* Grid de estándares */}
         <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {standards.map((standard) => (
             <Card
               key={standard.id}
               isPressable
-              className={`transition-all duration-300 cursor-pointer hover:shadow-lg h-fit ${
-                expandedCard === standard.id ? 'shadow-xl' : 'hover:scale-[1.02]'
+              className={`transition-all duration-500 cursor-pointer bg-content1 border-1 h-fit ${
+                expandedCard === standard.id 
+                  ? "shadow-2xl border-secondary/20 bg-gradient-to-br from-content1 to-secondary/5" 
+                  : "hover:shadow-lg border-default-200 hover:border-secondary/30 hover:scale-[1.01]"
               }`}
               onClick={() => handleCardClick(standard.id)}
             >
-              <CardBody className="p-6 h-full">
-                <div className="flex flex-col items-center text-center gap-4">
-                  <div className={`${standard.color} p-4 rounded-full`}>
+              <CardHeader className="pb-2">
+                <div className="flex items-start gap-4 w-full">
+                  <div className={`${standard.color} p-3 rounded-xl flex-shrink-0`}>
                     {standard.icon}
                   </div>
-                  <div className="flex-1">
-                    <h2 className="text-lg font-bold text-default-900 mb-1">
-                      {standard.title}
-                    </h2>
-                    <p className="text-default-600 text-sm mb-2">
-                      {standard.subtitle}
-                    </p>
-                    {expandedCard !== standard.id && (
-                      <p className="text-default-500 text-xs">
-                        Haz clic para ver más información
-                      </p>
-                    )}
-                  </div>
-
-                  {expandedCard === standard.id && (
-                    <div className="space-y-4 max-h-80 overflow-y-auto pr-2 w-full">
-                      <p className="text-foreground text-sm leading-relaxed text-left">
-                        {standard.content}
-                      </p>
-
-                      <div className="pt-4 border-t border-default-200">
-                        <Button
-                          color="primary"
-                          variant="flat"
-                          endContent={<ExternalLinkIcon size={16} />}
-                          onClick={(e) => handlePdfClick(e, standard.pdfName)}
-                          className="w-full"
-                          size="sm"
-                        >
-                          Ver más
-                        </Button>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Chip 
+                            size="sm" 
+                            variant="flat" 
+                            color="secondary"
+                          >
+                            {standard.category}
+                          </Chip>
+                          <Chip 
+                            size="sm" 
+                            variant="flat" 
+                            color="default"
+                          >
+                            {standard.year}
+                          </Chip>
+                        </div>
+                        <h2 className="text-lg font-bold text-default-900 leading-tight">
+                          {standard.title}
+                        </h2>
+                        <p className="text-sm text-default-600 mt-1">
+                          {standard.subtitle}
+                        </p>
+                      </div>
+                      <div className="text-secondary flex-shrink-0">
+                        {expandedCard === standard.id ? (
+                          <ChevronUpIcon size={20} />
+                        ) : (
+                          <ChevronDownIcon size={20} />
+                        )}
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
-              </CardBody>
+              </CardHeader>
+              
+              {expandedCard === standard.id && (
+                <CardBody className="pt-2">
+                  <Divider className="mb-6" />
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-md font-semibold text-default-800 mb-3 flex items-center gap-2">
+                        <BookOpenIcon size={16} className="text-secondary" />
+                        Descripción del Framework
+                      </h3>
+                      <p className="text-default-600 leading-relaxed text-sm">
+                        {standard.content}
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-md font-semibold text-default-800 mb-3 flex items-center gap-2">
+                        <TrendingUpIcon size={16} className="text-secondary" />
+                        Características Clave
+                      </h3>
+                      <div className="grid gap-2">
+                        {standard.keyFeatures.map((feature, index) => (
+                          <div key={index} className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 bg-secondary rounded-full mt-2 flex-shrink-0" />
+                            <span className="text-sm text-default-600">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-center pt-2">
+                      <Button
+                        color="secondary"
+                        variant="shadow"
+                        size="lg"
+                        endContent={<ExternalLinkIcon size={18} />}
+                        onClick={(e) => handlePdfClick(e, standard.pdfName)}
+                        className="font-semibold"
+                      >
+                        Consultar Estándar
+                      </Button>
+                    </div>
+                  </div>
+                </CardBody>
+              )}
             </Card>
           ))}
+        </div>
+
+        {/* Footer informativo */}
+        <div className="text-center pt-8">
+          <p className="text-default-400 text-sm">
+            Estándares internacionales - Última actualización: {new Date().toLocaleDateString('es-ES')}
+          </p>
         </div>
       </section>
     </DefaultLayout>

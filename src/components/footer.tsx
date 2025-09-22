@@ -25,7 +25,7 @@ export const Footer = () => {
               href="mailto:bhleonel705@gmail.com"
               className="text-primary hover:text-primary-600 transition-colors no-underline"
             >
-              segundo_correo@ejemplo.com
+              bhleonel705@ejemplo.com
             </a>
           </p>
         </div>
