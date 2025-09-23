@@ -15,7 +15,7 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   GavelIcon,
-  UserCheckIcon
+  UserCheckIcon,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { button as buttonStyles } from "@heroui/theme";
@@ -50,9 +50,9 @@ export default function LawsPage() {
         "Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)",
         "Obligaciones de avisos de privacidad",
         "Medidas de seguridad técnicas y administrativas",
-        "Sanciones por incumplimiento"
+        "Sanciones por incumplimiento",
       ],
-      pdfName: "ley-proteccion-datos-personales.pdf",
+      pdfName: "LGPDPPSO.pdf", // Updated to match actual file
     },
     {
       id: "lpi",
@@ -67,9 +67,9 @@ export default function LawsPage() {
         "Registro de patentes y marcas",
         "Protección de diseños industriales",
         "Procedimientos de oposición",
-        "Violaciones y sanciones aplicables"
+        "Violaciones y sanciones aplicables",
       ],
-      pdfName: "ley-propiedad-industrial.pdf",
+      pdfName: "Propiedad_Industrial.pdf", // Updated to match actual file
     },
     {
       id: "lfda",
@@ -84,9 +84,9 @@ export default function LawsPage() {
         "Derechos morales y patrimoniales",
         "Registro de obras",
         "Limitaciones y excepciones",
-        "Protección de software y multimedia"
+        "Protección de software y multimedia",
       ],
-      pdfName: "ley-federal-derechos-autor.pdf",
+      pdfName: "LFDA.pdf", // Updated to match actual file
     },
     {
       id: "cpf",
@@ -101,9 +101,9 @@ export default function LawsPage() {
         "Acceso ilícito a sistemas informáticos",
         "Interceptación de comunicaciones",
         "Daño a datos y sistemas",
-        "Fraude informático y sanciones"
+        "Fraude informático y sanciones",
       ],
-      pdfName: "codigo-penal-federal-delitos-informaticos.pdf",
+      pdfName: "CodigoPenasl.pdf", // Updated to match actual file (note: there's a typo in the filename "Penasl")
     },
   ];
 
@@ -113,7 +113,13 @@ export default function LawsPage() {
 
   const handlePdfClick = (e: React.MouseEvent, pdfName: string) => {
     e.stopPropagation();
-    window.open(`/pdfs/${pdfName}`, "_blank");
+    // Added error handling for PDF opening
+    try {
+      window.open(`/pdfs/${pdfName}`, "_blank");
+    } catch (error) {
+      console.error("Error opening PDF:", error);
+      alert("Error al abrir el documento PDF");
+    }
   };
 
   return (
@@ -126,14 +132,14 @@ export default function LawsPage() {
             className={buttonStyles({
               variant: "light",
               radius: "full",
-              size: "sm"
+              size: "sm",
             })}
           >
             <ArrowLeftIcon size={16} />
             Volver al Inicio
           </Link>
-          <Chip 
-            variant="flat" 
+          <Chip
+            variant="flat"
             color="success"
             startContent={<GavelIcon size={14} />}
             size="sm"
@@ -144,11 +150,14 @@ export default function LawsPage() {
 
         {/* Título principal */}
         <div className="text-center space-y-3">
-          <h1 className={`${title()} text-4xl md:text-5xl bg-gradient-to-r from-success to-success-600 bg-clip-text text-transparent`}>
+          <h1
+            className={`${title()} text-4xl md:text-5xl bg-gradient-to-r from-success to-success-600 bg-clip-text text-transparent`}
+          >
             Leyes Mexicanas
           </h1>
           <p className="text-default-500 text-lg max-w-3xl mx-auto">
-            Marco legal nacional que regula el manejo, protección y uso de la información
+            Marco legal nacional que regula el manejo, protección y uso de la
+            información
           </p>
         </div>
 
@@ -184,12 +193,12 @@ export default function LawsPage() {
                   Marco Jurídico Nacional
                 </h2>
                 <p className="text-default-600 leading-relaxed text-lg">
-                  Esta sección contiene el marco legal mexicano que regula el manejo,
-                  protección y uso de la información. Encuentra las principales
-                  leyes que todo profesional debe conocer para asegurar el
-                  cumplimiento normativo en materia de datos personales, propiedad
-                  intelectual y aspectos penales relacionados con el manejo de
-                  información.
+                  Esta sección contiene el marco legal mexicano que regula el
+                  manejo, protección y uso de la información. Encuentra las
+                  principales leyes que todo profesional debe conocer para
+                  asegurar el cumplimiento normativo en materia de datos
+                  personales, propiedad intelectual y aspectos penales
+                  relacionados con el manejo de información.
                 </p>
               </div>
             </div>
@@ -203,8 +212,8 @@ export default function LawsPage() {
               key={law.id}
               isPressable
               className={`transition-all duration-500 cursor-pointer bg-content1 border-1 h-fit ${
-                expandedCard === law.id 
-                  ? "shadow-2xl border-success/20 bg-gradient-to-br from-content1 to-success/5" 
+                expandedCard === law.id
+                  ? "shadow-2xl border-success/20 bg-gradient-to-br from-content1 to-success/5"
                   : "hover:shadow-lg border-default-200 hover:border-success/30 hover:scale-[1.01]"
               }`}
               onClick={() => handleCardClick(law.id)}
@@ -217,9 +226,9 @@ export default function LawsPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex-1">
-                        <Chip 
-                          size="sm" 
-                          variant="flat" 
+                        <Chip
+                          size="sm"
+                          variant="flat"
                           color="success"
                           className="mb-2"
                         >
@@ -243,7 +252,7 @@ export default function LawsPage() {
                   </div>
                 </div>
               </CardHeader>
-              
+
               {expandedCard === law.id && (
                 <CardBody className="pt-2">
                   <Divider className="mb-6" />
@@ -257,7 +266,7 @@ export default function LawsPage() {
                         {law.content}
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-md font-semibold text-default-800 mb-3">
                         Aspectos Clave
@@ -266,12 +275,14 @@ export default function LawsPage() {
                         {law.keyPoints.map((point, index) => (
                           <div key={index} className="flex items-start gap-2">
                             <div className="w-1.5 h-1.5 bg-success rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-sm text-default-600">{point}</span>
+                            <span className="text-sm text-default-600">
+                              {point}
+                            </span>
                           </div>
                         ))}
                       </div>
                     </div>
-                    
+
                     <div className="flex justify-center pt-2">
                       <Button
                         color="success"
@@ -294,7 +305,8 @@ export default function LawsPage() {
         {/* Footer informativo */}
         <div className="text-center pt-8">
           <p className="text-default-400 text-sm">
-            Normativas vigentes - Última actualización: {new Date().toLocaleDateString('es-ES')}
+            Normativas vigentes - Última actualización:{" "}
+            {new Date().toLocaleDateString("es-ES")}
           </p>
         </div>
       </section>
