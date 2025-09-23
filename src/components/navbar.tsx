@@ -1,6 +1,3 @@
-import { Button } from "@heroui/button";
-import { Kbd } from "@heroui/kbd";
-import { Input } from "@heroui/input";
 import { Link } from "react-router-dom";
 import {
   Navbar as HeroUINavbar,
@@ -11,9 +8,6 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@heroui/navbar";
-import { link as linkStyles } from "@heroui/theme";
-import clsx from "clsx";
-
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";

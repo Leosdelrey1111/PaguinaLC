@@ -1,7 +1,6 @@
 import { title } from "@/components/primitives";
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Chip } from "@heroui/chip";
-import { Divider } from "@heroui/divider";
 import { 
   ArrowLeftIcon, 
   ShieldIcon, 
